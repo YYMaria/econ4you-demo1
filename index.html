@@ -220,14 +220,24 @@
       border-radius: 3px;
     }
 
+    .e4u-events-card-link {
+      text-decoration: none;
+      color: inherit;
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+    }
+
     .e4u-events-card {
       background: #FFFFFF;
       border-radius: 0;
       padding: 0;
       border: none;
       box-shadow: none;
-      flex: 0 0 320px;
-      scroll-snap-align: start;
+      cursor: pointer;
+    }
+
+    .e4u-events-card:hover .e4u-events-details-link {
+      color: #6D78FD;
     }
 
     /* Card image container */
@@ -320,7 +330,6 @@
 
     .e4u-events-card-divider {
       border: none;
-      border-top: 1px solid rgba(17, 34, 51, 0.10);
       margin: 0 0 14px;
     }
 
@@ -733,28 +742,31 @@
 
     <div class="e4u-events-cards">
 
-      <article class="e4u-events-card" data-event-date="2026-02-03T15:00:00+01:00">
+      <a href="event-detail.html" class="e4u-events-card-link">
+      <article class="e4u-events-card" data-event-date="2026-02-05T15:00:00+01:00">
         <div class="e4u-events-card-image">
           <img src="images/1765458733815.jpg" alt="Emergency Response Coordination" class="e4u-events-card-img" />
           <div class="e4u-events-card-date-badge">
             <span class="e4u-events-card-date-month">Feb</span>
-            <span class="e4u-events-card-date-day">3</span>
+            <span class="e4u-events-card-date-day">5</span>
           </div>
-          <div class="e4u-events-card-countdown" data-countdown="2026-02-03T15:00:00+01:00"></div>
+          <div class="e4u-events-card-countdown" data-countdown="2026-02-05T15:00:00+01:00"></div>
         </div>
         <div class="e4u-events-card-body">
           <h3 class="e4u-events-card-title">Emergency Response Coordination Call</h3>
           <p class="e4u-events-card-desc">Urgent coordination session on winter humanitarian logistics and infrastructure repair priorities.</p>
           <hr class="e4u-events-card-divider" />
           <p class="e4u-events-card-label">TIME</p>
-          <p class="e4u-events-card-meta">Feb 3, 2026 &middot; 3:00 PM CET</p>
+          <p class="e4u-events-card-meta">Feb 5, 2026 &middot; 3:00 PM CET</p>
           <p class="e4u-events-card-location">
             <span class="e4u-events-tag">Online</span>
           </p>
-          <a href="event-detail.html" class="e4u-events-details-link">Details &rarr;</a>
+          <span class="e4u-events-details-link">Details &rarr;</span>
         </div>
       </article>
+      </a>
 
+      <a href="event-detail.html" class="e4u-events-card-link">
       <article class="e4u-events-card" data-event-date="2026-04-08T14:00:00+01:00">
         <div class="e4u-events-card-image">
           <img src="images/1763041740759.jpg" alt="Reconstruction Finance Summit" class="e4u-events-card-img" />
@@ -772,10 +784,12 @@
           <p class="e4u-events-card-location">
             <span class="e4u-events-tag">Online</span>
           </p>
-          <a href="#" class="e4u-events-details-link">Details &rarr;</a>
+          <span class="e4u-events-details-link">Details &rarr;</span>
         </div>
       </article>
+      </a>
 
+      <a href="event-detail.html" class="e4u-events-card-link">
       <article class="e4u-events-card" data-event-date="2026-04-22T18:00:00+02:00">
         <div class="e4u-events-card-image">
           <img src="images/aa40c0a0-cf93-4eea-ab67-2309e56f4e8b-md.jpg" alt="Ukraine Energy Infrastructure Panel" class="e4u-events-card-img" />
@@ -794,9 +808,10 @@
             Kyiv, Ukraine
             <span class="e4u-events-tag">In-Person</span>
           </p>
-          <a href="#" class="e4u-events-details-link">Details &rarr;</a>
+          <span class="e4u-events-details-link">Details &rarr;</span>
         </div>
       </article>
+      </a>
 
     </div>
   </div>
