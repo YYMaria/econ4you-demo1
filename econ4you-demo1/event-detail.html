@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergency Response Coordination Call — Economists for Ukraine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Reset ---- */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; padding: 0; background: #FFFFFF; }
+
+    /* ---- Navbar ---- */
+    .e4u-navbar {
+      background: #1E2A3A;
+      width: 100%;
+    }
+
+    .e4u-navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 88px;
+    }
+
+    .e4u-navbar-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .e4u-navbar-logo-svg {
+      width: 200px;
+      height: auto;
+    }
+
+    .e4u-navbar-toggle-input {
+      display: none;
+    }
+
+    .e4u-navbar-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .e4u-navbar-hamburger-bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .e4u-navbar-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 8px;
+    }
+
+    .e4u-navbar-item {
+      position: relative;
+    }
+
+    .e4u-navbar-link {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 8px 14px;
+      display: inline-block;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .e4u-navbar-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: transparent;
+      border-radius: 1px;
+      transition: background 0.2s ease;
+    }
+
+    .e4u-navbar-link:hover {
+      color: #6D78FD;
+    }
+
+    .e4u-navbar-link:hover::after {
+      background: #6D78FD;
+    }
+
+    .e4u-navbar-arrow {
+      font-size: 10px;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
+
+    /* Active item underline */
+    .e4u-navbar-item--active .e4u-navbar-link::after {
+      background: #FFFFFF;
+    }
+
+    /* ---- Divider ---- */
+    .e4u-events-divider {
+      border: none;
+      border-top: 1px solid rgba(17, 34, 51, 0.12);
+      margin: 32px 0;
+    }
+
+    /* ---- Tags ---- */
+    .e4u-events-tag {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      color: #112233;
+      border: 1px solid rgba(17, 34, 51, 0.35);
+      border-radius: 50px;
+      padding: 2px 10px;
+      line-height: 1.4;
+    }
+
+    /* ---- Event Detail: Hero ---- */
+    .e4u-event-hero {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      background: #1E2A3A;
+    }
+
+    .e4u-event-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .e4u-event-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(17, 34, 51, 0.25) 0%, rgba(17, 34, 51, 0.75) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 40px;
+    }
+
+    .e4u-event-hero-content {
+      max-width: 1060px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .e4u-event-hero-badge {
+      display: inline-block;
+      background: #6576B5;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 12px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .e4u-event-hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    /* ---- Event Detail: Info strip ---- */
+    .e4u-event-info {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(17, 34, 51, 0.12);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .e4u-event-info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .e4u-event-info-item {
+      font-size: 14px;
+      color: #435262;
+    }
+
+    .e4u-event-info-label {
+      font-weight: 600;
+      font-size: 11px;
+      color: #112233;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .e4u-event-info-highlight {
+      font-weight: 600;
+      font-size: 18px;
+      color: #3B44BC;
+    }
+
+    .e4u-event-info-register {
+      display: inline-block;
+      background: #3B44BC;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s ease;
+    }
+
+    .e4u-event-info-register:hover {
+      opacity: 0.85;
+    }
+
+    /* ---- Event Detail: Two-column layout ---- */
+    .e4u-event-layout {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+      display: flex;
+      gap: 48px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .e4u-event-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .e4u-event-sidebar {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .e4u-event-sidebar-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 24px;
+    }
+
+    .e4u-event-sidebar-heading {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #112233;
+      margin: 0 0 8px;
+    }
+
+    .e4u-event-sidebar-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #435262;
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+
+    .e4u-event-sidebar-text a {
+      color: #6576B5;
+      text-decoration: none;
+    }
+
+    .e4u-event-sidebar-text a:hover {
+      text-decoration: underline;
+    }
+
+    .e4u-event-section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: #112233;
+      margin: 0 0 2px;
+    }
+
+    .e4u-event-dots {
+      font-size: 14px;
+      color: #6D78FD;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .e4u-event-desc {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: #435262;
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+
+    .e4u-event-desc:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .e4u-event-divider {
+      border: none;
+      border-top: 1px solid rgba(17, 34, 51, 0.10);
+      margin: 32px 0;
+    }
+
+    /* ---- Event Detail: Speakers ---- */
+    .e4u-event-speakers-section {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 24px 48px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .e4u-event-speakers {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+      margin-top: 24px;
+    }
+
+    .e4u-event-speaker {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .e4u-event-speaker-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      background: #1E2A3A;
+    }
+
+    .e4u-event-speaker-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .e4u-event-speaker-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: #112233;
+      margin: 0 0 4px;
+    }
+
+    .e4u-event-speaker-role {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: #6576B5;
+      margin: 0 0 8px;
+    }
+
+    .e4u-event-speaker-bio {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: #435262;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ---- Event Detail: Registration ---- */
+    .e4u-event-register {
+      background: #F5F7FA;
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .e4u-event-register-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #112233;
+      margin: 0 0 6px;
+    }
+
+    .e4u-event-register-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #435262;
+      margin: 0 0 24px;
+    }
+
+    .e4u-event-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .e4u-event-input {
+      flex: 1 1 200px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      padding: 12px 16px;
+      border: 1px solid rgba(17, 34, 51, 0.18);
+      border-radius: 8px;
+      background: #FFFFFF;
+      color: #112233;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .e4u-event-input:focus {
+      border-color: #6576B5;
+    }
+
+    .e4u-event-input::placeholder {
+      color: rgba(17, 34, 51, 0.35);
+    }
+
+    .e4u-event-register-btn {
+      display: inline-block;
+      background: #3B44BC;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 36px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      margin-top: 4px;
+    }
+
+    .e4u-event-register-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ---- Donation Section ---- */
+    .e4u-donate-section {
+      background: #112233;
+      width: 100%;
+      padding: 60px 24px;
+    }
+
+    .e4u-donate-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .e4u-donate-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: #FFFFFF;
+      margin: 0 0 8px;
+    }
+
+    .e4u-donate-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0 0 40px;
+    }
+
+    .e4u-donate-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .e4u-donate-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .e4u-donate-card-image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .e4u-donate-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .e4u-donate-card-body {
+      padding: 24px;
+    }
+
+    .e4u-donate-card-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      color: #112233;
+      margin: 0 0 8px;
+      line-height: 1.35;
+    }
+
+    .e4u-donate-card-desc {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #435262;
+      line-height: 1.55;
+      margin: 0 0 20px;
+    }
+
+    .e4u-donate-btn {
+      display: inline-block;
+      background: #3B44BC;
+      color: #FFFFFF;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .e4u-donate-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ---- Donate: Desktop 3-column ---- */
+    @media (min-width: 768px) {
+      .e4u-donate-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ---- Event Detail: Back link ---- */
+    .e4u-event-back {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      color: #6576B5;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 24px;
+      transition: color 0.15s ease;
+    }
+
+    .e4u-event-back:hover {
+      color: #112233;
+    }
+
+    /* ---- Footer ---- */
+    .e4u-footer {
+      background: #0F1419;
+      width: 100%;
+      padding: 32px 24px;
+    }
+
+    .e4u-footer-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .e4u-footer-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .e4u-footer-logo-svg {
+      width: 160px;
+      height: auto;
+    }
+
+    .e4u-footer-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: #334455;
+      text-align: center;
+    }
+
+    .e4u-footer-text a {
+      color: #6E79FF;
+      text-decoration: none;
+    }
+
+    .e4u-footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    .e4u-footer-partner {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .e4u-footer-partner-img {
+      height: 36px;
+      width: auto;
+    }
+
+    /* ---- Responsive: Navbar mobile ---- */
+    @media (max-width: 767px) {
+      .e4u-navbar-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 16px 24px;
+      }
+
+      .e4u-navbar-hamburger {
+        display: flex;
+      }
+
+      .e4u-navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 12px 0 8px;
+        gap: 0;
+      }
+
+      .e4u-navbar-toggle-input:checked ~ .e4u-navbar-menu {
+        display: flex;
+      }
+
+      .e4u-navbar-link {
+        padding: 10px 0;
+        width: 100%;
+        display: block;
+      }
+
+      .e4u-navbar-item--active .e4u-navbar-link::after {
+        left: 0;
+        right: auto;
+        width: 40px;
+        bottom: 4px;
+      }
+    }
+
+    /* ---- Responsive: Event Detail mobile ---- */
+    @media (max-width: 767px) {
+      .e4u-event-hero {
+        height: 240px;
+      }
+
+      .e4u-event-hero-overlay {
+        padding: 24px;
+      }
+
+      .e4u-event-hero-title {
+        font-size: 24px;
+      }
+
+      .e4u-event-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .e4u-event-layout {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .e4u-event-sidebar {
+        width: 100%;
+      }
+
+      .e4u-event-speakers {
+        grid-template-columns: 1fr;
+      }
+
+      .e4u-event-speaker {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .e4u-donate-title {
+        font-size: 24px;
+      }
+    }
+
+    /* ---- Responsive: Footer mobile ---- */
+    @media (max-width: 767px) {
+      .e4u-footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="e4u-navbar">
+  <div class="e4u-navbar-inner">
+    <a href="#" class="e4u-navbar-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 144" class="e4u-navbar-logo-svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill-rule="nonzero"><g><path d="M31.08,18.76C32.37,20.07,32.87,21.92,32.46,23.65L38.83,25.99C39.22,25.23,39.74,24.53,40.39,23.92C43.5,21,48.44,21.1,51.42,24.13C53.61,26.36,54.21,29.65,52.94,32.48C51.68,35.31,48.8,37.11,45.64,37.05C42.49,36.99,39.68,35.07,38.53,32.2C37.89,30.6,37.84,28.88,38.3,27.31L31.96,24.97C31.03,26.67,29.24,27.75,27.27,27.79L27.15,27.79L26.03,41.05C27.85,41.19,29.63,41.95,30.99,43.34C32.97,45.33,33.65,48.2,32.85,50.81L39.12,52.56C39.28,52.15,39.51,51.76,39.83,51.42L40,51.25L40,51.23C40.68,50.59,41.6,50.24,42.55,50.26C43.35,50.27,44.12,50.55,44.73,51.04L48.55,47.35C48.05,46.85,47.65,46.25,47.38,45.58C46.58,43.57,47.09,41.28,48.68,39.78C50.86,37.74,54.31,37.8,56.4,39.92C57.72,41.26,58.22,43.14,57.78,44.9L68.13,49.65C68.5,48.91,69.02,48.21,69.66,47.6C71.12,46.23,73.08,45.48,75.1,45.51C77.12,45.55,79.05,46.38,80.45,47.81C83.36,50.77,83.27,55.49,80.23,58.34C77.2,61.19,72.38,61.1,69.46,58.14C67.52,56.17,66.91,53.42,67.61,50.97L57.25,46.21C56.28,47.94,54.41,49.01,52.37,48.97C51.4,48.96,50.47,48.69,49.67,48.22L45.64,52.12C46.37,53.46,46.15,55.16,44.97,56.27C43.56,57.62,41.29,57.58,39.92,56.2C39.29,55.56,38.95,54.75,38.91,53.93L32.32,52.09C30.97,54.65,28.24,56.26,25.27,56.21C22.13,56.15,19.33,54.25,18.18,51.38L18.12,51.22L10.88,53.09C11.09,54.71,10.55,56.4,9.25,57.62C7.08,59.67,3.62,59.61,1.53,57.48C-0.56,55.36-0.5,51.98,1.67,49.93C2.71,48.94,4.11,48.4,5.56,48.43C7.01,48.46,8.39,49.05,9.4,50.07C9.89,50.57,10.26,51.13,10.51,51.73L17.75,49.86C17.46,48.15,17.78,46.39,18.65,44.89L11.86,40.32C10.81,41.45,9.3,42.12,7.69,42.09C5.48,42.04,3.51,40.7,2.71,38.68C1.9,36.67,2.42,34.38,4.02,32.89C6.19,30.85,9.64,30.92,11.73,33.04C13.27,34.6,13.69,36.91,12.8,38.89C12.76,38.98,12.72,39.07,12.67,39.16L19.46,43.74C19.64,43.53,19.84,43.33,20.04,43.14C21.33,41.93,22.93,41.24,24.58,41.07L25.72,27.61C24.07,27.17,22.7,26,22.06,24.4C21.89,23.96,21.77,23.52,21.72,23.07L16.96,22.99C16.91,23.24,16.83,23.49,16.72,23.72C16.14,25.02,14.82,25.85,13.37,25.82C11.92,25.79,10.64,24.91,10.11,23.59C9.59,22.27,9.93,20.77,10.98,19.79C12.4,18.47,14.65,18.51,16.02,19.89C16.49,20.37,16.8,20.96,16.94,21.59L21.75,21.66C21.92,20.52,22.48,19.44,23.36,18.6C25.54,16.57,28.99,16.63,31.08,18.76ZM50.59,1.16C52.33,2.53,53.08,4.82,52.49,6.97C52.24,7.89,51.77,8.71,51.13,9.37L50.97,9.53L53.62,13.33C53.83,13.22,54.06,13.12,54.29,13.05C55.2,12.78,56.17,12.89,57,13.35C57.31,13.51,57.58,13.72,57.81,13.95L62.63,11.39C61.92,9.17,62.48,6.71,64.13,5.03C65.29,3.85,66.86,3.19,68.5,3.18C70.14,3.18,71.72,3.83,72.89,5C74.66,6.79,75.2,9.49,74.25,11.84C74.12,12.16,73.97,12.47,73.79,12.76L81.37,17.75C82.19,16.92,83.29,16.4,84.46,16.3C85.77,16.19,87.07,16.6,88.08,17.46C89.61,18.77,90.22,20.89,89.61,22.83C89.28,23.9,88.61,24.8,87.75,25.42L93.84,38.52C94.33,38.38,94.84,38.32,95.36,38.33C96.8,38.35,98.17,38.96,99.17,40.01C100.7,41.61,101.13,43.99,100.25,46.03C99.37,48.08,97.36,49.38,95.16,49.34C92.96,49.3,91,47.92,90.2,45.84C89.71,44.57,89.71,43.18,90.16,41.94L81.49,38.8C81.26,39.18,80.97,39.54,80.64,39.86C78.48,41.97,75.04,41.9,72.95,39.71C71.14,37.8,70.96,34.91,72.37,32.8L68.74,29.16C68.27,29.48,67.72,29.68,67.13,29.74C65.7,29.89,64.32,29.15,63.63,27.86C62.99,26.64,63.09,25.16,63.89,24.05L64.02,23.87L64,23.87C64.6,23.13,65.46,22.66,66.4,22.56C67.34,22.47,68.28,22.75,69.01,23.36C70.13,24.28,70.59,25.79,70.18,27.19C70.08,27.53,69.93,27.84,69.75,28.13L73.33,31.71C75.5,29.83,78.78,29.96,80.79,32.08C82.19,33.56,82.62,35.63,82.08,37.47L90.83,40.64C91.03,40.37,91.25,40.11,91.5,39.87C91.81,39.56,92.16,39.29,92.53,39.08L86.47,26.08C86.09,26.21,85.7,26.29,85.3,26.33C83.3,26.5,81.39,25.43,80.47,23.63C79.7,22.13,79.74,20.36,80.51,18.92L72.9,13.9C71.76,15.05,70.21,15.73,68.54,15.73C66.35,15.74,64.34,14.58,63.22,12.71L58.6,15.17C58.98,16.13,58.95,17.25,58.42,18.23C57.48,19.98,55.32,20.63,53.6,19.67C51.87,18.72,51.23,16.54,52.17,14.79C52.27,14.6,52.39,14.43,52.51,14.27L49.81,10.37C49.23,10.68,48.59,10.89,47.92,10.98C45.73,11.25,43.6,10.17,42.51,8.23C42.3,7.84,42.13,7.43,42.01,7.02L34.3,8.55C34.29,10.42,32.85,11.99,30.98,12.11C29.02,12.24,27.33,10.74,27.2,8.76C27.06,6.78,28.54,5.06,30.5,4.92C31.45,4.86,32.38,5.17,33.09,5.81C33.5,6.17,33.82,6.62,34.03,7.12L41.81,5.58C41.79,4.35,42.18,3.13,42.96,2.12C44.8-0.28,48.22-0.71,50.59,1.16Z" fill="#009CFF"></path><path d="M89.88,59.3C86.79,61.56,84.61,64.23,83.65,68.13C83.65,68.13,83.62,68.13,83.61,68.13C80.39,79.13,71.31,90.56,58.6,91.02C45.03,91.5,39.08,85.52,39.84,81.53C41.38,73.29,58.45,81.77,65.86,75.52C71.29,70.94,69.7,65.57,67.22,64.11C64.18,62.33,60.36,64.72,43.09,63.8C27.48,62.95,9.93,61.8,2.01,67.8C7.74,92.28,30.41,108.79,55.21,106.54C80.01,104.28,99.39,83.95,100.7,58.83C100.7,58.46,100.66,58.09,100.65,57.71C97.14,57.12,92.72,57.22,89.88,59.3Z" fill="#FFD000"></path><path d="M72.5,113.85C72.5,115.54,71.13,116.91,69.44,116.92L32.27,116.92C30.58,116.92,29.21,115.54,29.2,113.85C29.2,113.03,29.52,112.25,30.1,111.67C30.67,111.1,31.45,110.77,32.27,110.77L69.44,110.77C70.26,110.77,71.04,111.1,71.61,111.67C72.18,112.25,72.51,113.04,72.5,113.85ZM72.5,122.96C72.5,123.78,72.18,124.56,71.61,125.13C71.04,125.71,70.26,126.04,69.44,126.04L32.27,126.04C31.45,126.04,30.67,125.71,30.1,125.14C29.52,124.56,29.2,123.78,29.2,122.96C29.21,121.27,30.58,119.89,32.27,119.89L69.44,119.89C71.13,119.89,72.5,121.27,72.5,122.96ZM72.5,132.4C72.5,134.09,71.13,135.47,69.44,135.47L32.27,135.47C30.57,135.47,29.2,134.09,29.2,132.4C29.2,131.58,29.53,130.8,30.1,130.23C30.68,129.65,31.46,129.33,32.27,129.33L69.44,129.33C70.25,129.33,71.03,129.66,71.61,130.23C72.18,130.8,72.5,131.58,72.5,132.4ZM39.84,139C41.5,142.09,44.71,144,48.2,144L53.52,144C57.01,144,60.21,142.08,61.86,139L39.84,139Z" fill="#FFD000"></path></g></g><g transform="translate(145.484,88.26)" fill="#FFFFFF" fill-rule="nonzero"><polygon points="15.012 0.324 15.012 3.636 4.104 3.636 4.104 11.52 13.104 11.52 13.104 14.688 4.104 14.688 4.104 25.74 0 25.74 0 0.324"></polygon><path d="M34.46,0C36.81,0,38.94,0.55,40.85,1.66C42.75,2.76,44.25,4.3,45.35,6.28C46.44,8.26,46.98,10.5,46.98,13C46.98,15.49,46.44,17.73,45.35,19.71C44.25,21.69,42.75,23.24,40.85,24.35C38.94,25.47,36.81,26.03,34.46,26.03C32.08,26.03,29.94,25.47,28.03,24.35C26.12,23.24,24.62,21.69,23.51,19.71C22.41,17.73,21.86,15.49,21.86,13C21.86,10.5,22.41,8.26,23.51,6.28C24.62,4.3,26.12,2.76,28.03,1.66C29.94,0.55,32.08,0,34.46,0ZM34.46,3.82C32.82,3.82,31.37,4.19,30.1,4.93C28.83,5.68,27.84,6.74,27.13,8.14C26.42,9.53,26.07,11.15,26.07,13C26.07,14.84,26.42,16.46,27.13,17.86C27.84,19.25,28.83,20.32,30.1,21.06C31.37,21.8,32.82,22.18,34.46,22.18C36.06,22.18,37.5,21.8,38.76,21.06C40.02,20.32,41,19.25,41.71,17.86C42.42,16.46,42.77,14.84,42.77,13C42.77,11.15,42.42,9.53,41.71,8.14C41,6.74,40.02,5.68,38.76,4.93C37.5,4.19,36.06,3.82,34.46,3.82Z"></path><path d="M68.48,25.74L62.14,15.59L59.23,15.59L59.23,25.74L55.12,25.74L55.12,0.32L64.09,0.32C66.99,0.32,69.19,1.03,70.69,2.45C72.19,3.86,72.94,5.74,72.94,8.06C72.94,10.06,72.39,11.69,71.27,12.96C70.15,14.23,68.54,15.05,66.43,15.41L73.09,25.74L68.48,25.74ZM59.23,12.67L63.76,12.67C67.08,12.67,68.73,11.21,68.73,8.28C68.73,6.89,68.33,5.8,67.53,5.02C66.72,4.24,65.47,3.85,63.76,3.85L59.23,3.85L59.23,12.67Z"></path><path d="M97,0.32L97,15.41C97,17.66,97.5,19.34,98.49,20.45C99.49,21.55,100.89,22.1,102.69,22.1C104.46,22.1,105.85,21.55,106.85,20.45C107.84,19.34,108.34,17.66,108.34,15.41L108.34,0.32L112.44,0.32L112.44,15.41C112.44,18.89,111.54,21.52,109.74,23.31C107.94,25.1,105.57,25.99,102.62,25.99C99.69,25.99,97.34,25.1,95.56,23.31C93.78,21.52,92.9,18.89,92.9,15.41L92.9,0.32L97,0.32Z"></path><polygon points="129.188 12.888 140.384 25.74 135.38 25.74 125.336 13.968 125.336 25.74 121.232 25.74 121.232 0.324 125.336 0.324 125.336 11.952 135.416 0.324 140.384 0.324"></polygon><path d="M160.8,25.74L154.46,15.59L151.55,15.59L151.55,25.74L147.44,25.74L147.44,0.32L156.41,0.32C159.31,0.32,161.51,1.03,163.01,2.45C164.51,3.86,165.26,5.74,165.26,8.06C165.26,10.06,164.71,11.69,163.59,12.96C162.47,14.23,160.86,15.05,158.75,15.41L165.41,25.74L160.8,25.74ZM151.55,12.67L156.08,12.67C159.4,12.67,161.05,11.21,161.05,8.28C161.05,6.89,160.65,5.8,159.85,5.02C159.04,4.24,157.79,3.85,156.08,3.85L151.55,3.85L151.55,12.67Z"></path><path d="M188.13,20.23L177.4,20.23L175.46,25.74L171.06,25.74L180.42,0.72L185.14,0.72L194.46,25.74L190.07,25.74L188.13,20.23ZM186.98,17.06L182.76,5.18L178.55,17.06L186.98,17.06Z"></path><polygon points="205.628 0.324 205.628 25.74 201.524 25.74 201.524 0.324"></polygon><polygon points="235.152 25.74 231.048 25.74 218.7 6.984 218.7 25.74 214.596 25.74 214.596 0.36 218.7 0.36 231.048 19.188 231.048 0.36 235.152 0.36"></polygon><polygon points="248.224 3.636 248.224 11.34 257.584 11.34 257.584 14.508 248.224 14.508 248.224 22.392 258.664 22.392 258.664 25.74 244.12 25.74 244.12 0.324 258.664 0.324 258.664 3.636"></polygon></g><g transform="translate(146.186,28.228)" fill="#FFFFFF" fill-rule="nonzero"><polygon points="9.234 7.938 9.234 15.93 22.14 15.93 22.14 22.896 9.234 22.896 9.234 31.374 23.76 31.374 23.76 38.772 0 38.772 0 0.594 23.76 0.594 23.76 7.938"></polygon><path d="M50.44,0.22C55.3,0.22,59.32,1.49,62.51,4.05C65.7,6.61,67.76,10.06,68.69,14.42L58.92,14.42C58.2,12.65,57.09,11.27,55.6,10.26C54.1,9.25,52.33,8.75,50.28,8.75C47.58,8.75,45.4,9.74,43.74,11.72C42.09,13.7,41.26,16.34,41.26,19.66C41.26,22.97,42.09,25.61,43.74,27.57C45.4,29.53,47.58,30.51,50.28,30.51C52.33,30.51,54.1,30.01,55.6,29C57.09,27.99,58.2,26.62,58.92,24.89L68.69,24.89C67.76,29.21,65.7,32.66,62.51,35.24C59.32,37.81,55.3,39.1,50.44,39.1C46.73,39.1,43.47,38.28,40.67,36.64C37.86,35,35.69,32.71,34.16,29.75C32.63,26.8,31.86,23.44,31.86,19.66C31.86,15.88,32.63,12.51,34.16,9.56C35.69,6.61,37.86,4.31,40.67,2.67C43.47,1.04,46.73,0.22,50.44,0.22Z"></path><path d="M96.02,0C99.62,0,102.89,0.84,105.82,2.51C108.76,4.19,111.07,6.51,112.76,9.48C114.45,12.45,115.3,15.8,115.3,19.55C115.3,23.29,114.44,26.66,112.73,29.65C111.02,32.63,108.7,34.97,105.77,36.64C102.83,38.31,99.58,39.15,96.02,39.15C92.46,39.15,89.21,38.31,86.27,36.64C83.34,34.97,81.02,32.63,79.31,29.65C77.6,26.66,76.74,23.29,76.74,19.55C76.74,15.8,77.6,12.45,79.31,9.48C81.02,6.51,83.34,4.19,86.27,2.51C89.21,0.84,92.46,0,96.02,0ZM96.02,8.59C93,8.59,90.59,9.57,88.81,11.53C87.03,13.49,86.14,16.16,86.14,19.55C86.14,22.9,87.03,25.56,88.81,27.54C90.59,29.52,93,30.51,96.02,30.51C99.01,30.51,101.4,29.52,103.2,27.54C105,25.56,105.9,22.9,105.9,19.55C105.9,16.2,105.01,13.54,103.23,11.56C101.45,9.58,99.04,8.59,96.02,8.59Z"></path><polygon points="158.394 38.772 149.16 38.772 133.716 15.336 133.716 38.772 124.482 38.772 124.482 0.594 133.716 0.594 149.16 24.246 149.16 0.594 158.394 0.594"></polygon><path d="M186.91,0C190.51,0,193.78,0.84,196.71,2.51C199.65,4.19,201.96,6.51,203.65,9.48C205.34,12.45,206.19,15.8,206.19,19.55C206.19,23.29,205.33,26.66,203.62,29.65C201.91,32.63,199.59,34.97,196.66,36.64C193.72,38.31,190.47,39.15,186.91,39.15C183.35,39.15,180.1,38.31,177.16,36.64C174.23,34.97,171.91,32.63,170.2,29.65C168.49,26.66,167.63,23.29,167.63,19.55C167.63,15.8,168.49,12.45,170.2,9.48C171.91,6.51,174.23,4.19,177.16,2.51C180.1,0.84,183.35,0,186.91,0ZM186.91,8.59C183.89,8.59,181.48,9.57,179.7,11.53C177.92,13.49,177.03,16.16,177.03,19.55C177.03,22.9,177.92,25.56,179.7,27.54C181.48,29.52,183.89,30.51,186.91,30.51C189.9,30.51,192.29,29.52,194.09,27.54C195.89,25.56,196.79,22.9,196.79,19.55C196.79,16.2,195.9,13.54,194.12,11.56C192.34,9.58,189.93,8.59,186.91,8.59Z"></path><polygon points="258.302 0.864 258.302 38.772 249.068 38.772 249.068 15.066 240.86 38.772 232.868 38.772 224.606 15.012 224.606 38.772 215.372 38.772 215.372 0.864 226.658 0.864 236.972 27.27 247.07 0.864"></polygon><polygon points="277.908 0.594 277.908 38.772 268.674 38.772 268.674 0.594"></polygon><path d="M315.71,28.03C315.71,30.04,315.2,31.9,314.17,33.59C313.15,35.28,311.64,36.63,309.64,37.64C307.64,38.65,305.22,39.15,302.37,39.15C298.09,39.15,294.56,38.11,291.79,36.02C289.02,33.93,287.51,31.01,287.25,27.27L297.08,27.27C297.23,28.71,297.74,29.84,298.62,30.67C299.5,31.5,300.63,31.91,302,31.91C303.18,31.91,304.12,31.59,304.8,30.94C305.49,30.29,305.83,29.43,305.83,28.35C305.83,27.38,305.52,26.57,304.89,25.92C304.26,25.27,303.47,24.74,302.54,24.33C301.6,23.91,300.3,23.42,298.65,22.84C296.24,22.01,294.27,21.21,292.74,20.44C291.21,19.67,289.89,18.51,288.79,16.98C287.7,15.45,287.15,13.46,287.15,11.02C287.15,8.75,287.72,6.79,288.87,5.13C290.03,3.47,291.62,2.21,293.65,1.32C295.69,0.44,298.02,0,300.65,0C304.89,0,308.27,1.01,310.77,3.02C313.27,5.04,314.69,7.81,315.01,11.34L305.02,11.34C304.84,10.08,304.38,9.08,303.64,8.34C302.91,7.61,301.91,7.24,300.65,7.24C299.57,7.24,298.69,7.52,298.03,8.1C297.36,8.68,297.03,9.52,297.03,10.64C297.03,11.54,297.33,12.3,297.92,12.93C298.51,13.56,299.26,14.08,300.16,14.47C301.06,14.87,302.36,15.37,304.05,15.98C306.5,16.81,308.49,17.63,310.04,18.44C311.59,19.25,312.92,20.43,314.04,21.98C315.15,23.53,315.71,25.54,315.71,28.03Z"></path><polygon points="352.274 0.594 352.274 7.938 341.906 7.938 341.906 38.772 332.618 38.772 332.618 7.938 322.358 7.938 322.358 0.594"></polygon><path d="M387.59,28.03C387.59,30.04,387.08,31.9,386.06,33.59C385.03,35.28,383.52,36.63,381.52,37.64C379.52,38.65,377.1,39.15,374.26,39.15C369.97,39.15,366.44,38.11,363.67,36.02C360.9,33.93,359.39,31.01,359.14,27.27L368.96,27.27C369.11,28.71,369.62,29.84,370.5,30.67C371.39,31.5,372.51,31.91,373.88,31.91C375.07,31.91,376,31.59,376.69,30.94C377.37,30.29,377.71,29.43,377.71,28.35C377.71,27.38,377.4,26.57,376.77,25.92C376.14,25.27,375.35,24.74,374.42,24.33C373.48,23.91,372.19,23.42,370.53,22.84C368.12,22.01,366.15,21.21,364.62,20.44C363.09,19.67,361.77,18.51,360.68,16.98C359.58,15.45,359.03,13.46,359.03,11.02C359.03,8.75,359.6,6.79,360.76,5.13C361.91,3.47,363.5,2.21,365.54,1.32C367.57,0.44,369.9,0,372.53,0C376.78,0,380.15,1.01,382.65,3.02C385.16,5.04,386.57,7.81,386.89,11.34L376.9,11.34C376.72,10.08,376.26,9.08,375.53,8.34C374.79,7.61,373.79,7.24,372.53,7.24C371.45,7.24,370.58,7.52,369.91,8.1C369.24,8.68,368.91,9.52,368.91,10.64C368.91,11.54,369.21,12.3,369.8,12.93C370.4,13.56,371.14,14.08,372.04,14.47C372.94,14.87,374.24,15.37,375.93,15.98C378.38,16.81,380.38,17.63,381.92,18.44C383.47,19.25,384.8,20.43,385.92,21.98C387.04,23.53,387.59,25.54,387.59,28.03Z"></path></g></g></svg>
+    </a>
+    <input type="checkbox" id="e4u-navbar-toggle" class="e4u-navbar-toggle-input" />
+    <label for="e4u-navbar-toggle" class="e4u-navbar-hamburger">
+      <span class="e4u-navbar-hamburger-bar"></span>
+      <span class="e4u-navbar-hamburger-bar"></span>
+      <span class="e4u-navbar-hamburger-bar"></span>
+    </label>
+    <ul class="e4u-navbar-menu">
+      <li class="e4u-navbar-item"><a href="#" class="e4u-navbar-link">Home</a></li>
+      <li class="e4u-navbar-item e4u-navbar-item--dropdown">
+        <a href="#" class="e4u-navbar-link">About Us <span class="e4u-navbar-arrow">&#9662;</span></a>
+      </li>
+      <li class="e4u-navbar-item e4u-navbar-item--active">
+        <a href="#" class="e4u-navbar-link">Events</a>
+      </li>
+      <li class="e4u-navbar-item e4u-navbar-item--dropdown">
+        <a href="#" class="e4u-navbar-link">Analysis <span class="e4u-navbar-arrow">&#9662;</span></a>
+      </li>
+      <li class="e4u-navbar-item e4u-navbar-item--dropdown">
+        <a href="#" class="e4u-navbar-link">Publications <span class="e4u-navbar-arrow">&#9662;</span></a>
+      </li>
+      <li class="e4u-navbar-item e4u-navbar-item--dropdown">
+        <a href="#" class="e4u-navbar-link">Research <span class="e4u-navbar-arrow">&#9662;</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Banner -->
+<div class="e4u-event-hero">
+  <img src="images/1765458733815.jpg" alt="Emergency Response Coordination" class="e4u-event-hero-img" />
+  <div class="e4u-event-hero-overlay">
+    <div class="e4u-event-hero-content">
+      <span class="e4u-event-hero-badge">Upcoming Event</span>
+      <h1 class="e4u-event-hero-title">Emergency Response Coordination Call</h1>
+    </div>
+  </div>
+</div>
+
+<!-- Info Strip -->
+<div class="e4u-event-info">
+  <div class="e4u-event-info-group">
+    <span class="e4u-event-info-label">Date &amp; Time</span>
+    <span class="e4u-event-info-item">February 3, 2026 &middot; 3:00 PM CET</span>
+  </div>
+  <div class="e4u-event-info-group">
+    <span class="e4u-event-info-label">Price</span>
+    <span class="e4u-event-info-highlight">Free</span>
+  </div>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4UYrtCMZ08UXEznQm3gVlij1VJnSCJ5K-gvnVFzYxGUNdbw/viewform?usp=dialog" target="_blank" class="e4u-event-info-register">Register</a>
+</div>
+
+<!-- Two-column Layout -->
+<div class="e4u-event-layout">
+  <div class="e4u-event-main">
+    <a href="index.html" class="e4u-event-back">&larr; Back to Events</a>
+
+    <h2 class="e4u-event-section-title">Event Overview</h2>
+    <div class="e4u-event-dots">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</div>
+    <p class="e4u-event-desc">As Ukraine enters another challenging winter, the need for coordinated humanitarian response has never been more critical. This emergency coordination call brings together leading economists, humanitarian logistics experts, and infrastructure specialists to align on priorities for the coming weeks.</p>
+    <p class="e4u-event-desc">The session will cover three key areas: winter humanitarian logistics including heating fuel distribution and emergency shelter provisioning; infrastructure repair priorities focusing on energy grid stabilization and water system restoration; and cross-border supply chain coordination to ensure aid reaches the communities that need it most.</p>
+    <p class="e4u-event-desc">Participants will receive a briefing document 24 hours before the call, including updated damage assessments and resource allocation maps. The call will conclude with concrete action items and volunteer coordination assignments for the following two-week period.</p>
+  </div>
+
+  <aside class="e4u-event-sidebar">
+    <img src="images/1765458733815.jpg" alt="Emergency Response Coordination" class="e4u-event-sidebar-img" />
+
+    <h4 class="e4u-event-sidebar-heading">Location</h4>
+    <p class="e4u-event-sidebar-text">Online via Zoom</p>
+
+    <h4 class="e4u-event-sidebar-heading">Category</h4>
+    <p class="e4u-event-sidebar-text"><span class="e4u-events-tag">Humanitarian</span></p>
+
+    <h4 class="e4u-event-sidebar-heading">Organized By</h4>
+    <p class="e4u-event-sidebar-text">Economists for Ukraine</p>
+  </aside>
+</div>
+
+<!-- Speakers -->
+<div class="e4u-event-speakers-section">
+  <hr class="e4u-event-divider" />
+  <h2 class="e4u-event-section-title">Speakers</h2>
+  <div class="e4u-event-dots">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</div>
+  <div class="e4u-event-speakers">
+
+    <div class="e4u-event-speaker">
+      <img src="images/Olena.png" alt="Dr. Olena Kravchenko" class="e4u-event-speaker-avatar" />
+      <div class="e4u-event-speaker-info">
+        <p class="e4u-event-speaker-name">Dr. Olena Kravchenko</p>
+        <p class="e4u-event-speaker-role">Senior Economist, Ukrainian Institute of Economic Research</p>
+        <p class="e4u-event-speaker-bio">Specializes in wartime economic measurement and has published extensively on GDP estimation under conflict conditions. Advises the Ukrainian government on reconstruction cost modeling.</p>
+      </div>
+    </div>
+
+    <div class="e4u-event-speaker">
+      <img src="images/James.png" alt="James Whitfield" class="e4u-event-speaker-avatar" />
+      <div class="e4u-event-speaker-info">
+        <p class="e4u-event-speaker-name">James Whitfield</p>
+        <p class="e4u-event-speaker-role">Director of Humanitarian Operations, EuroAid Alliance</p>
+        <p class="e4u-event-speaker-bio">Over 15 years of experience coordinating large-scale humanitarian logistics across Eastern Europe and Central Asia. Previously led emergency response operations in Syria and Yemen.</p>
+      </div>
+    </div>
+
+    <div class="e4u-event-speaker">
+      <img src="images/Anna.png" alt="Dr. Anna Bergström" class="e4u-event-speaker-avatar" />
+      <div class="e4u-event-speaker-info">
+        <p class="e4u-event-speaker-name">Dr. Anna Bergstr&ouml;m</p>
+        <p class="e4u-event-speaker-role">Energy Policy Analyst, Nordic Development Fund</p>
+        <p class="e4u-event-speaker-bio">Leads research on decentralized energy solutions for conflict-affected regions. Currently advising on micro-grid deployment strategies for Ukrainian communities cut off from the main power grid.</p>
+      </div>
+    </div>
+
+    <div class="e4u-event-speaker">
+      <img src="images/Tara.png" alt="Taras Bondarenko" class="e4u-event-speaker-avatar" />
+      <div class="e4u-event-speaker-info">
+        <p class="e4u-event-speaker-name">Taras Bondarenko</p>
+        <p class="e4u-event-speaker-role">Infrastructure Recovery Lead, Ministry of Communities and Territories Development of Ukraine</p>
+        <p class="e4u-event-speaker-bio">Coordinates national infrastructure recovery programs across 12 oblasts. Manages rapid-response assessment teams deployed to newly accessible areas following de-occupation.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<section class="e4u-donate-section">
+  <div class="e4u-donate-inner">
+    <h2 class="e4u-donate-title">How to Directly Help Ukrainians</h2>
+    <p class="e4u-donate-subtitle">In partnership with the AI for Good Foundation &mdash; 100% of donations go directly to verified projects on the ground.</p>
+    <div class="e4u-donate-cards">
+      <div class="e4u-donate-card">
+        <div class="e4u-donate-card-image">
+          <img src="images/DM_20260201124449_001.jpg" alt="Energy Infrastructure Recovery" class="e4u-donate-card-img" />
+        </div>
+        <div class="e4u-donate-card-body">
+          <h3 class="e4u-donate-card-title">Energy Infrastructure Recovery</h3>
+          <p class="e4u-donate-card-desc">Support the rebuilding of Ukraine's energy grid, restoring power to communities devastated by targeted attacks on critical infrastructure.</p>
+          <a href="#" class="e4u-donate-btn">Donate</a>
+        </div>
+      </div>
+      <div class="e4u-donate-card">
+        <div class="e4u-donate-card-image">
+          <img src="images/DM_20260201124459_001.jpg" alt="Support Democracy Movement" class="e4u-donate-card-img" />
+        </div>
+        <div class="e4u-donate-card-body">
+          <h3 class="e4u-donate-card-title">Support Democracy Movement</h3>
+          <p class="e4u-donate-card-desc">Fund civic education programs and democratic institution building across Ukraine as the country pursues its European path.</p>
+          <a href="#" class="e4u-donate-btn">Donate</a>
+        </div>
+      </div>
+      <div class="e4u-donate-card">
+        <div class="e4u-donate-card-image">
+          <img src="images/DM_20260201124519_001.jpg" alt="Refugee and Winter Aid" class="e4u-donate-card-img" />
+        </div>
+        <div class="e4u-donate-card-body">
+          <h3 class="e4u-donate-card-title">Refugee &amp; Winter Aid</h3>
+          <p class="e4u-donate-card-desc">Provide essential winter supplies, shelter, and humanitarian assistance to displaced Ukrainian families facing harsh conditions.</p>
+          <a href="#" class="e4u-donate-btn">Donate</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="e4u-footer">
+  <div class="e4u-footer-inner">
+    <a href="#" class="e4u-footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 144" class="e4u-footer-logo-svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g fill-rule="nonzero"><g><path d="M31.08,18.76C32.37,20.07,32.87,21.92,32.46,23.65L38.83,25.99C39.22,25.23,39.74,24.53,40.39,23.92C43.5,21,48.44,21.1,51.42,24.13C53.61,26.36,54.21,29.65,52.94,32.48C51.68,35.31,48.8,37.11,45.64,37.05C42.49,36.99,39.68,35.07,38.53,32.2C37.89,30.6,37.84,28.88,38.3,27.31L31.96,24.97C31.03,26.67,29.24,27.75,27.27,27.79L27.15,27.79L26.03,41.05C27.85,41.19,29.63,41.95,30.99,43.34C32.97,45.33,33.65,48.2,32.85,50.81L39.12,52.56C39.28,52.15,39.51,51.76,39.83,51.42L40,51.25L40,51.23C40.68,50.59,41.6,50.24,42.55,50.26C43.35,50.27,44.12,50.55,44.73,51.04L48.55,47.35C48.05,46.85,47.65,46.25,47.38,45.58C46.58,43.57,47.09,41.28,48.68,39.78C50.86,37.74,54.31,37.8,56.4,39.92C57.72,41.26,58.22,43.14,57.78,44.9L68.13,49.65C68.5,48.91,69.02,48.21,69.66,47.6C71.12,46.23,73.08,45.48,75.1,45.51C77.12,45.55,79.05,46.38,80.45,47.81C83.36,50.77,83.27,55.49,80.23,58.34C77.2,61.19,72.38,61.1,69.46,58.14C67.52,56.17,66.91,53.42,67.61,50.97L57.25,46.21C56.28,47.94,54.41,49.01,52.37,48.97C51.4,48.96,50.47,48.69,49.67,48.22L45.64,52.12C46.37,53.46,46.15,55.16,44.97,56.27C43.56,57.62,41.29,57.58,39.92,56.2C39.29,55.56,38.95,54.75,38.91,53.93L32.32,52.09C30.97,54.65,28.24,56.26,25.27,56.21C22.13,56.15,19.33,54.25,18.18,51.38L18.12,51.22L10.88,53.09C11.09,54.71,10.55,56.4,9.25,57.62C7.08,59.67,3.62,59.61,1.53,57.48C-0.56,55.36-0.5,51.98,1.67,49.93C2.71,48.94,4.11,48.4,5.56,48.43C7.01,48.46,8.39,49.05,9.4,50.07C9.89,50.57,10.26,51.13,10.51,51.73L17.75,49.86C17.46,48.15,17.78,46.39,18.65,44.89L11.86,40.32C10.81,41.45,9.3,42.12,7.69,42.09C5.48,42.04,3.51,40.7,2.71,38.68C1.9,36.67,2.42,34.38,4.02,32.89C6.19,30.85,9.64,30.92,11.73,33.04C13.27,34.6,13.69,36.91,12.8,38.89C12.76,38.98,12.72,39.07,12.67,39.16L19.46,43.74C19.64,43.53,19.84,43.33,20.04,43.14C21.33,41.93,22.93,41.24,24.58,41.07L25.72,27.61C24.07,27.17,22.7,26,22.06,24.4C21.89,23.96,21.77,23.52,21.72,23.07L16.96,22.99C16.91,23.24,16.83,23.49,16.72,23.72C16.14,25.02,14.82,25.85,13.37,25.82C11.92,25.79,10.64,24.91,10.11,23.59C9.59,22.27,9.93,20.77,10.98,19.79C12.4,18.47,14.65,18.51,16.02,19.89C16.49,20.37,16.8,20.96,16.94,21.59L21.75,21.66C21.92,20.52,22.48,19.44,23.36,18.6C25.54,16.57,28.99,16.63,31.08,18.76ZM50.59,1.16C52.33,2.53,53.08,4.82,52.49,6.97C52.24,7.89,51.77,8.71,51.13,9.37L50.97,9.53L53.62,13.33C53.83,13.22,54.06,13.12,54.29,13.05C55.2,12.78,56.17,12.89,57,13.35C57.31,13.51,57.58,13.72,57.81,13.95L62.63,11.39C61.92,9.17,62.48,6.71,64.13,5.03C65.29,3.85,66.86,3.19,68.5,3.18C70.14,3.18,71.72,3.83,72.89,5C74.66,6.79,75.2,9.49,74.25,11.84C74.12,12.16,73.97,12.47,73.79,12.76L81.37,17.75C82.19,16.92,83.29,16.4,84.46,16.3C85.77,16.19,87.07,16.6,88.08,17.46C89.61,18.77,90.22,20.89,89.61,22.83C89.28,23.9,88.61,24.8,87.75,25.42L93.84,38.52C94.33,38.38,94.84,38.32,95.36,38.33C96.8,38.35,98.17,38.96,99.17,40.01C100.7,41.61,101.13,43.99,100.25,46.03C99.37,48.08,97.36,49.38,95.16,49.34C92.96,49.3,91,47.92,90.2,45.84C89.71,44.57,89.71,43.18,90.16,41.94L81.49,38.8C81.26,39.18,80.97,39.54,80.64,39.86C78.48,41.97,75.04,41.9,72.95,39.71C71.14,37.8,70.96,34.91,72.37,32.8L68.74,29.16C68.27,29.48,67.72,29.68,67.13,29.74C65.7,29.89,64.32,29.15,63.63,27.86C62.99,26.64,63.09,25.16,63.89,24.05L64.02,23.87L64,23.87C64.6,23.13,65.46,22.66,66.4,22.56C67.34,22.47,68.28,22.75,69.01,23.36C70.13,24.28,70.59,25.79,70.18,27.19C70.08,27.53,69.93,27.84,69.75,28.13L73.33,31.71C75.5,29.83,78.78,29.96,80.79,32.08C82.19,33.56,82.62,35.63,82.08,37.47L90.83,40.64C91.03,40.37,91.25,40.11,91.5,39.87C91.81,39.56,92.16,39.29,92.53,39.08L86.47,26.08C86.09,26.21,85.7,26.29,85.3,26.33C83.3,26.5,81.39,25.43,80.47,23.63C79.7,22.13,79.74,20.36,80.51,18.92L72.9,13.9C71.76,15.05,70.21,15.73,68.54,15.73C66.35,15.74,64.34,14.58,63.22,12.71L58.6,15.17C58.98,16.13,58.95,17.25,58.42,18.23C57.48,19.98,55.32,20.63,53.6,19.67C51.87,18.72,51.23,16.54,52.17,14.79C52.27,14.6,52.39,14.43,52.51,14.27L49.81,10.37C49.23,10.68,48.59,10.89,47.92,10.98C45.73,11.25,43.6,10.17,42.51,8.23C42.3,7.84,42.13,7.43,42.01,7.02L34.3,8.55C34.29,10.42,32.85,11.99,30.98,12.11C29.02,12.24,27.33,10.74,27.2,8.76C27.06,6.78,28.54,5.06,30.5,4.92C31.45,4.86,32.38,5.17,33.09,5.81C33.5,6.17,33.82,6.62,34.03,7.12L41.81,5.58C41.79,4.35,42.18,3.13,42.96,2.12C44.8-0.28,48.22-0.71,50.59,1.16Z" fill="#009CFF"></path><path d="M89.88,59.3C86.79,61.56,84.61,64.23,83.65,68.13C83.65,68.13,83.62,68.13,83.61,68.13C80.39,79.13,71.31,90.56,58.6,91.02C45.03,91.5,39.08,85.52,39.84,81.53C41.38,73.29,58.45,81.77,65.86,75.52C71.29,70.94,69.7,65.57,67.22,64.11C64.18,62.33,60.36,64.72,43.09,63.8C27.48,62.95,9.93,61.8,2.01,67.8C7.74,92.28,30.41,108.79,55.21,106.54C80.01,104.28,99.39,83.95,100.7,58.83C100.7,58.46,100.66,58.09,100.65,57.71C97.14,57.12,92.72,57.22,89.88,59.3Z" fill="#FFD000"></path><path d="M72.5,113.85C72.5,115.54,71.13,116.91,69.44,116.92L32.27,116.92C30.58,116.92,29.21,115.54,29.2,113.85C29.2,113.03,29.52,112.25,30.1,111.67C30.67,111.1,31.45,110.77,32.27,110.77L69.44,110.77C70.26,110.77,71.04,111.1,71.61,111.67C72.18,112.25,72.51,113.04,72.5,113.85ZM72.5,122.96C72.5,123.78,72.18,124.56,71.61,125.13C71.04,125.71,70.26,126.04,69.44,126.04L32.27,126.04C31.45,126.04,30.67,125.71,30.1,125.14C29.52,124.56,29.2,123.78,29.2,122.96C29.21,121.27,30.58,119.89,32.27,119.89L69.44,119.89C71.13,119.89,72.5,121.27,72.5,122.96ZM72.5,132.4C72.5,134.09,71.13,135.47,69.44,135.47L32.27,135.47C30.57,135.47,29.2,134.09,29.2,132.4C29.2,131.58,29.53,130.8,30.1,130.23C30.68,129.65,31.46,129.33,32.27,129.33L69.44,129.33C70.25,129.33,71.03,129.66,71.61,130.23C72.18,130.8,72.5,131.58,72.5,132.4ZM39.84,139C41.5,142.09,44.71,144,48.2,144L53.52,144C57.01,144,60.21,142.08,61.86,139L39.84,139Z" fill="#FFD000"></path></g></g><g transform="translate(145.484,88.26)" fill="#FFFFFF" fill-rule="nonzero"><polygon points="15.012 0.324 15.012 3.636 4.104 3.636 4.104 11.52 13.104 11.52 13.104 14.688 4.104 14.688 4.104 25.74 0 25.74 0 0.324"></polygon><path d="M34.46,0C36.81,0,38.94,0.55,40.85,1.66C42.75,2.76,44.25,4.3,45.35,6.28C46.44,8.26,46.98,10.5,46.98,13C46.98,15.49,46.44,17.73,45.35,19.71C44.25,21.69,42.75,23.24,40.85,24.35C38.94,25.47,36.81,26.03,34.46,26.03C32.08,26.03,29.94,25.47,28.03,24.35C26.12,23.24,24.62,21.69,23.51,19.71C22.41,17.73,21.86,15.49,21.86,13C21.86,10.5,22.41,8.26,23.51,6.28C24.62,4.3,26.12,2.76,28.03,1.66C29.94,0.55,32.08,0,34.46,0ZM34.46,3.82C32.82,3.82,31.37,4.19,30.1,4.93C28.83,5.68,27.84,6.74,27.13,8.14C26.42,9.53,26.07,11.15,26.07,13C26.07,14.84,26.42,16.46,27.13,17.86C27.84,19.25,28.83,20.32,30.1,21.06C31.37,21.8,32.82,22.18,34.46,22.18C36.06,22.18,37.5,21.8,38.76,21.06C40.02,20.32,41,19.25,41.71,17.86C42.42,16.46,42.77,14.84,42.77,13C42.77,11.15,42.42,9.53,41.71,8.14C41,6.74,40.02,5.68,38.76,4.93C37.5,4.19,36.06,3.82,34.46,3.82Z"></path><path d="M68.48,25.74L62.14,15.59L59.23,15.59L59.23,25.74L55.12,25.74L55.12,0.32L64.09,0.32C66.99,0.32,69.19,1.03,70.69,2.45C72.19,3.86,72.94,5.74,72.94,8.06C72.94,10.06,72.39,11.69,71.27,12.96C70.15,14.23,68.54,15.05,66.43,15.41L73.09,25.74L68.48,25.74ZM59.23,12.67L63.76,12.67C67.08,12.67,68.73,11.21,68.73,8.28C68.73,6.89,68.33,5.8,67.53,5.02C66.72,4.24,65.47,3.85,63.76,3.85L59.23,3.85L59.23,12.67Z"></path><path d="M97,0.32L97,15.41C97,17.66,97.5,19.34,98.49,20.45C99.49,21.55,100.89,22.1,102.69,22.1C104.46,22.1,105.85,21.55,106.85,20.45C107.84,19.34,108.34,17.66,108.34,15.41L108.34,0.32L112.44,0.32L112.44,15.41C112.44,18.89,111.54,21.52,109.74,23.31C107.94,25.1,105.57,25.99,102.62,25.99C99.69,25.99,97.34,25.1,95.56,23.31C93.78,21.52,92.9,18.89,92.9,15.41L92.9,0.32L97,0.32Z"></path><polygon points="129.188 12.888 140.384 25.74 135.38 25.74 125.336 13.968 125.336 25.74 121.232 25.74 121.232 0.324 125.336 0.324 125.336 11.952 135.416 0.324 140.384 0.324"></polygon><path d="M160.8,25.74L154.46,15.59L151.55,15.59L151.55,25.74L147.44,25.74L147.44,0.32L156.41,0.32C159.31,0.32,161.51,1.03,163.01,2.45C164.51,3.86,165.26,5.74,165.26,8.06C165.26,10.06,164.71,11.69,163.59,12.96C162.47,14.23,160.86,15.05,158.75,15.41L165.41,25.74L160.8,25.74ZM151.55,12.67L156.08,12.67C159.4,12.67,161.05,11.21,161.05,8.28C161.05,6.89,160.65,5.8,159.85,5.02C159.04,4.24,157.79,3.85,156.08,3.85L151.55,3.85L151.55,12.67Z"></path><path d="M188.13,20.23L177.4,20.23L175.46,25.74L171.06,25.74L180.42,0.72L185.14,0.72L194.46,25.74L190.07,25.74L188.13,20.23ZM186.98,17.06L182.76,5.18L178.55,17.06L186.98,17.06Z"></path><polygon points="205.628 0.324 205.628 25.74 201.524 25.74 201.524 0.324"></polygon><polygon points="235.152 25.74 231.048 25.74 218.7 6.984 218.7 25.74 214.596 25.74 214.596 0.36 218.7 0.36 231.048 19.188 231.048 0.36 235.152 0.36"></polygon><polygon points="248.224 3.636 248.224 11.34 257.584 11.34 257.584 14.508 248.224 14.508 248.224 22.392 258.664 22.392 258.664 25.74 244.12 25.74 244.12 0.324 258.664 0.324 258.664 3.636"></polygon></g><g transform="translate(146.186,28.228)" fill="#FFFFFF" fill-rule="nonzero"><polygon points="9.234 7.938 9.234 15.93 22.14 15.93 22.14 22.896 9.234 22.896 9.234 31.374 23.76 31.374 23.76 38.772 0 38.772 0 0.594 23.76 0.594 23.76 7.938"></polygon><path d="M50.44,0.22C55.3,0.22,59.32,1.49,62.51,4.05C65.7,6.61,67.76,10.06,68.69,14.42L58.92,14.42C58.2,12.65,57.09,11.27,55.6,10.26C54.1,9.25,52.33,8.75,50.28,8.75C47.58,8.75,45.4,9.74,43.74,11.72C42.09,13.7,41.26,16.34,41.26,19.66C41.26,22.97,42.09,25.61,43.74,27.57C45.4,29.53,47.58,30.51,50.28,30.51C52.33,30.51,54.1,30.01,55.6,29C57.09,27.99,58.2,26.62,58.92,24.89L68.69,24.89C67.76,29.21,65.7,32.66,62.51,35.24C59.32,37.81,55.3,39.1,50.44,39.1C46.73,39.1,43.47,38.28,40.67,36.64C37.86,35,35.69,32.71,34.16,29.75C32.63,26.8,31.86,23.44,31.86,19.66C31.86,15.88,32.63,12.51,34.16,9.56C35.69,6.61,37.86,4.31,40.67,2.67C43.47,1.04,46.73,0.22,50.44,0.22Z"></path><path d="M96.02,0C99.62,0,102.89,0.84,105.82,2.51C108.76,4.19,111.07,6.51,112.76,9.48C114.45,12.45,115.3,15.8,115.3,19.55C115.3,23.29,114.44,26.66,112.73,29.65C111.02,32.63,108.7,34.97,105.77,36.64C102.83,38.31,99.58,39.15,96.02,39.15C92.46,39.15,89.21,38.31,86.27,36.64C83.34,34.97,81.02,32.63,79.31,29.65C77.6,26.66,76.74,23.29,76.74,19.55C76.74,15.8,77.6,12.45,79.31,9.48C81.02,6.51,83.34,4.19,86.27,2.51C89.21,0.84,92.46,0,96.02,0ZM96.02,8.59C93,8.59,90.59,9.57,88.81,11.53C87.03,13.49,86.14,16.16,86.14,19.55C86.14,22.9,87.03,25.56,88.81,27.54C90.59,29.52,93,30.51,96.02,30.51C99.01,30.51,101.4,29.52,103.2,27.54C105,25.56,105.9,22.9,105.9,19.55C105.9,16.2,105.01,13.54,103.23,11.56C101.45,9.58,99.04,8.59,96.02,8.59Z"></path><polygon points="158.394 38.772 149.16 38.772 133.716 15.336 133.716 38.772 124.482 38.772 124.482 0.594 133.716 0.594 149.16 24.246 149.16 0.594 158.394 0.594"></polygon><path d="M186.91,0C190.51,0,193.78,0.84,196.71,2.51C199.65,4.19,201.96,6.51,203.65,9.48C205.34,12.45,206.19,15.8,206.19,19.55C206.19,23.29,205.33,26.66,203.62,29.65C201.91,32.63,199.59,34.97,196.66,36.64C193.72,38.31,190.47,39.15,186.91,39.15C183.35,39.15,180.1,38.31,177.16,36.64C174.23,34.97,171.91,32.63,170.2,29.65C168.49,26.66,167.63,23.29,167.63,19.55C167.63,15.8,168.49,12.45,170.2,9.48C171.91,6.51,174.23,4.19,177.16,2.51C180.1,0.84,183.35,0,186.91,0ZM186.91,8.59C183.89,8.59,181.48,9.57,179.7,11.53C177.92,13.49,177.03,16.16,177.03,19.55C177.03,22.9,177.92,25.56,179.7,27.54C181.48,29.52,183.89,30.51,186.91,30.51C189.9,30.51,192.29,29.52,194.09,27.54C195.89,25.56,196.79,22.9,196.79,19.55C196.79,16.2,195.9,13.54,194.12,11.56C192.34,9.58,189.93,8.59,186.91,8.59Z"></path><polygon points="258.302 0.864 258.302 38.772 249.068 38.772 249.068 15.066 240.86 38.772 232.868 38.772 224.606 15.012 224.606 38.772 215.372 38.772 215.372 0.864 226.658 0.864 236.972 27.27 247.07 0.864"></polygon><polygon points="277.908 0.594 277.908 38.772 268.674 38.772 268.674 0.594"></polygon><path d="M315.71,28.03C315.71,30.04,315.2,31.9,314.17,33.59C313.15,35.28,311.64,36.63,309.64,37.64C307.64,38.65,305.22,39.15,302.37,39.15C298.09,39.15,294.56,38.11,291.79,36.02C289.02,33.93,287.51,31.01,287.25,27.27L297.08,27.27C297.23,28.71,297.74,29.84,298.62,30.67C299.5,31.5,300.63,31.91,302,31.91C303.18,31.91,304.12,31.59,304.8,30.94C305.49,30.29,305.83,29.43,305.83,28.35C305.83,27.38,305.52,26.57,304.89,25.92C304.26,25.27,303.47,24.74,302.54,24.33C301.6,23.91,300.3,23.42,298.65,22.84C296.24,22.01,294.27,21.21,292.74,20.44C291.21,19.67,289.89,18.51,288.79,16.98C287.7,15.45,287.15,13.46,287.15,11.02C287.15,8.75,287.72,6.79,288.87,5.13C290.03,3.47,291.62,2.21,293.65,1.32C295.69,0.44,298.02,0,300.65,0C304.89,0,308.27,1.01,310.77,3.02C313.27,5.04,314.69,7.81,315.01,11.34L305.02,11.34C304.84,10.08,304.38,9.08,303.64,8.34C302.91,7.61,301.91,7.24,300.65,7.24C299.57,7.24,298.69,7.52,298.03,8.1C297.36,8.68,297.03,9.52,297.03,10.64C297.03,11.54,297.33,12.3,297.92,12.93C298.51,13.56,299.26,14.08,300.16,14.47C301.06,14.87,302.36,15.37,304.05,15.98C306.5,16.81,308.49,17.63,310.04,18.44C311.59,19.25,312.92,20.43,314.04,21.98C315.15,23.53,315.71,25.54,315.71,28.03Z"></path><polygon points="352.274 0.594 352.274 7.938 341.906 7.938 341.906 38.772 332.618 38.772 332.618 7.938 322.358 7.938 322.358 0.594"></polygon><path d="M387.59,28.03C387.59,30.04,387.08,31.9,386.06,33.59C385.03,35.28,383.52,36.63,381.52,37.64C379.52,38.65,377.1,39.15,374.26,39.15C369.97,39.15,366.44,38.11,363.67,36.02C360.9,33.93,359.39,31.01,359.14,27.27L368.96,27.27C369.11,28.71,369.62,29.84,370.5,30.67C371.39,31.5,372.51,31.91,373.88,31.91C375.07,31.91,376,31.59,376.69,30.94C377.37,30.29,377.71,29.43,377.71,28.35C377.71,27.38,377.4,26.57,376.77,25.92C376.14,25.27,375.35,24.74,374.42,24.33C373.48,23.91,372.19,23.42,370.53,22.84C368.12,22.01,366.15,21.21,364.62,20.44C363.09,19.67,361.77,18.51,360.68,16.98C359.58,15.45,359.03,13.46,359.03,11.02C359.03,8.75,359.6,6.79,360.76,5.13C361.91,3.47,363.5,2.21,365.54,1.32C367.57,0.44,369.9,0,372.53,0C376.78,0,380.15,1.01,382.65,3.02C385.16,5.04,386.57,7.81,386.89,11.34L376.9,11.34C376.72,10.08,376.26,9.08,375.53,8.34C374.79,7.61,373.79,7.24,372.53,7.24C371.45,7.24,370.58,7.52,369.91,8.1C369.24,8.68,368.91,9.52,368.91,10.64C368.91,11.54,369.21,12.3,369.8,12.93C370.4,13.56,371.14,14.08,372.04,14.47C372.94,14.87,374.24,15.37,375.93,15.98C378.38,16.81,380.38,17.63,381.92,18.44C383.47,19.25,384.8,20.43,385.92,21.98C387.04,23.53,387.59,25.54,387.59,28.03Z"></path></g></g></svg>
+    </a>
+    <p class="e4u-footer-text">&copy; 2026 Economists for Ukraine. All rights reserved.<br /><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Use</a></p>
+    <div class="e4u-footer-partner">
+      <img src="images/DM_20260201124350_001.png" alt="AI for Good Foundation" class="e4u-footer-partner-img" />
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
